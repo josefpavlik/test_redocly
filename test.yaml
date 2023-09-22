@@ -1,0 +1,107 @@
+openapi: '3.0.2'
+info:
+  title: Daemon VNE -> MisterUp API
+  version: '1.0'
+servers:
+  - url: https://api.server.test/v1
+
+paths:
+  /#tipo:1-crea-pagamento:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                tipo:
+                  type: integer
+                  enum: [1]
+                  description: 1 = Crea pagamento
+                importo:
+                  type: integer
+                  description: Importo del pagamento in centesimi
+                  example: 1000
+                opName:
+                  type: string
+                  description: Nome dell'operatore / password
+                  example: "Mario1234!!"
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  tipo:
+                    type: integer
+                    enum: [1]
+                    description: 1 = Crea pagamento
+                  id:
+                    type: integer
+                    format: int64
+                    description: ID del pagamento
+                    example: 1234567890
+                  importo:
+                    type: integer
+                    description: Importo del pagamento in centesimi
+                    example: 1000
+  /#tipo:2-polling-pagamento:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                tipo:
+                  type: integer
+                  enum: [2]
+                  description: 2 = Polling pagamento
+                id:
+                  type: integer
+                  format: int64
+                  description: ID del pagamento
+                  example: 1234567890
+                opName:
+                  type: string
+                  description: Nome dell'operatore / password
+                  example: "Mario1234!!"
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - type: object
+                    properties:
+                      tipo:
+                        type: integer
+                        enum: [1]
+                        description: 1 = Crea pagamento
+                      id:
+                        type: integer
+                        format: int64
+                        description: ID del pagamento
+                        example: 1234567890
+                      importo:
+                        type: integer
+                        description: Importo del pagamento in centesimi
+                        example: 1000
+                  - type: object
+                    properties:
+                      tipo:
+                        type: integer
+                        enum: [1]
+                        description: 1 = Crea pagamento
+                      id:
+                        type: integer
+                        format: int64
+                        description: ID del pagamento
+                        example: 1234567890
+                      result_code:
+                        type: integer
+                        description: Codice di errore
+                        example: 191
