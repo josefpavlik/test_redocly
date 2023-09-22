@@ -8,6 +8,8 @@ servers:
 paths:
   /#tipo:1-crea-pagamento:
     post:
+      operation-operationId: 2222
+      operation-summary: 3333
       requestBody:
         content:
           application/json:
