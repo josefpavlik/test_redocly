@@ -74,36 +74,28 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                  - type: object
-                    description: OK
-                    properties:
-                      tipo:
-                        type: integer
-                        enum: [1]
-                        description: 1 = Crea pagamento
-                      id:
-                        type: integer
-                        format: int64
-                        description: ID del pagamento
-                        example: 1234567890
-                      importo:
-                        type: integer
-                        description: Importo del pagamento in centesimi
-                        example: 1000
-                  - type: object
-                    description: Errore
-                    properties:
-                      tipo:
-                        type: integer
-                        enum: [1]
-                        description: 1 = Crea pagamento
-                      id:
-                        type: integer
-                        format: int64
-                        description: ID del pagamento
-                        example: 1234567890
-                      result_code:
-                        type: integer
-                        description: Codice di errore
-                        example: 191
+                properties:
+                  tipo:
+                    type: integer
+                    enum: [1]
+                    description: 1 = Crea pagamento
+                  id:
+                    type: integer
+                    format: int64
+                    description: ID del pagamento
+                    example: 1234567890
+                  importo:
+                    type: integer
+                    description: Importo del pagamento in centesimi
+                    example: 1000
+              examples:
+                example1:
+                  summary: Esempio 1
+                  value:
+                    name: Jane Doe
+                    email: jane.doe@example.com
+                example2:
+                  summary: Esempio 2
+                  value:
+                    name: Bob Smith
+                    email: bob.smith@example.com
