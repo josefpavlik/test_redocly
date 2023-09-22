@@ -69,33 +69,42 @@ paths:
                   description: Nome dell'operatore / password
                   example: "Mario1234!!"
       responses:
-        '200':
-          description: OK
+        200:
+          description: Comando accettato
           content:
             application/json:
               schema:
                 properties:
                   tipo:
                     type: integer
-                    enum: [1]
-                    description: 1 = Crea pagamento
+                    enum: [2]
+                    description: 2 = Polling pagamento
                   id:
                     type: integer
                     format: int64
                     description: ID del pagamento
-                    example: 1234567890
                   importo:
                     type: integer
                     description: Importo del pagamento in centesimi
-                    example: 1000
+                  result_code:
+                    type: integer
+                    enum: [1,2]
+                    description: Esito dell'operazione 1=ok, 2=ko
+                  msg:
+                    type: integer
+                    description: Codice di errore nel caso di result_code=2
               examples:
                 example1:
-                  summary: Esempio 1
+                  summary: Pagamento accettato
                   value:
-                    name: Jane Doe
-                    email: jane.doe@example.com
+                    tipo: 2
+                    id: 1234567890
+                    importo: 1000
+                    result_code: 1
                 example2:
-                  summary: Esempio 2
+                  summary: Errore cassa occupata
                   value:
-                    name: Bob Smith
-                    email: bob.smith@example.com
+                    tipo: 2
+                    result_code: 2
+                    msg: 100
+                    
