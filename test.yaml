@@ -7,8 +7,6 @@ servers:
 
 paths:
   /#tipo:1-crea-pagamento:
-    operation-operationId: 2222
-    operation-summary: 3333
     post:
       requestBody:
         content:
@@ -78,6 +76,7 @@ paths:
               schema:
                 oneOf:
                   - type: object
+                    description: OK
                     properties:
                       tipo:
                         type: integer
@@ -93,6 +92,7 @@ paths:
                         description: Importo del pagamento in centesimi
                         example: 1000
                   - type: object
+                    description: Errore
                     properties:
                       tipo:
                         type: integer
